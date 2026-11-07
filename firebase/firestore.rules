@@ -1,0 +1,61 @@
+rules_version = '2';
+
+// CampusCare - Firestore security rules.
+//
+// These are the access control for the whole app. Hiding a button in Flutter is
+// UX; this file is security. Deploy with:
+//
+//     firebase deploy --only firestore:rules
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Reads the caller's role from THEIR OWN user document. A student cannot
+    // fake this, because the value lives in the database, not in the app.
+    function myRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isStaff() {
+      return signedIn() && myRole() == 'staff';
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+
+      // A new account may only ever create itself as a student.
+      allow create: if signedIn()
+                    && request.auth.uid == uid
+                    && request.resource.data.role == 'student';
+
+      // Nobody can promote themselves: the role must be unchanged.
+      allow update: if signedIn()
+                    && request.auth.uid == uid
+                    && request.resource.data.role == resource.data.role;
+
+      allow delete: if false;
+    }
+
+    match /reports/{reportId} {
+      allow read: if signedIn();
+
+      // You may only file a report as yourself, and only in the first state.
+      allow create: if signedIn()
+                    && request.resource.data.submittedBy.uid == request.auth.uid
+                    && request.resource.data.status == 'submitted';
+
+      // Staff may update anything. A student may edit their own report's text,
+      // but must not move the status or reassign authorship.
+      allow update: if isStaff()
+                    || (signedIn()
+                        && resource.data.submittedBy.uid == request.auth.uid
+                        && request.resource.data.status == resource.data.status
+                        && request.resource.data.submittedBy.uid == resource.data.submittedBy.uid);
+
+      allow delete: if false;
+    }
+  }
+}
