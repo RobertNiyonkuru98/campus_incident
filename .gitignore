@@ -46,3 +46,7 @@ app.*.map.json
 
 # Flutter build output
 flutter_build/
+
+# Generated report output - keep the .md, not the build artefacts
+docs/Technical-Report.html
+docs/make_report_html.py
