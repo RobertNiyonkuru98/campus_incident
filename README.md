@@ -148,3 +148,6 @@ nothing).
 - [ ] Add a loading skeleton for the reports list
 - [ ] Record the 7-10 minute demo (student flow, then staff status update)
 - [ ] Write the technical report (APA/IEEE) with architecture diagram + screenshots
+
+
+# Author - Robert Niyonkuru

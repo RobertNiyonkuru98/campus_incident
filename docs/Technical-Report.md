@@ -1,22 +1,11 @@
-<!--
-HOW TO USE THIS DRAFT
-1. Replace every [[...]] placeholder with your own details.
-2. Read each section and rewrite anything that does not sound like you. You must be
-   able to defend every sentence in the viva.
-3. Figures reference the files in screenshots/ and docs/. Insert them where marked.
-4. Export to PDF named RobertNiyonkuru_Assignment2.pdf. A Google Docs link is not graded.
-5. IMPORTANT: re-capture screenshots/rulesPlayground.png before submitting. The
-   current file shows the default deny-all ruleset, not this project's rules.
--->
-
 # CampusCare: A Firebase-Backed Mobile Application for Campus Incident Reporting
 
 **Student:** Robert Tony Mitali Niyonkuru
-**Student number:** [[YOUR STUDENT NUMBER]]
-**Course:** [[COURSE CODE AND TITLE]]
+**Class:** January 25, BSE
+**Course:** Mobile Application Development
 **Submission date:** 7 November 2026
 **Repository:** https://github.com/RobertNiyonkuru98/campus_incident
-**Demonstration video:** [[PASTE UNLISTED VIDEO LINK]]
+**Demonstration video:** https://drive.google.com/file/d/1Sjzg8yjzR8n9Rz8orTP4MHI2JZgVKfdz/view?usp=drive_link
 
 ---
 
