@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="830" viewBox="0 0 1240 830" font-family="Segoe UI, Inter, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2A5C6B"/>
+    </marker>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#C75B39"/>
+    </marker>
+    <style>
+      .t{font-size:15px;font-weight:700;fill:#0E1A1F}
+      .sub{font-size:11.5px;fill:#6B7C84}
+      .band{font-size:12px;font-weight:700;letter-spacing:1.2px;fill:#6B7C84}
+      .box{fill:#FFFFFF;stroke:#DDE6E9;stroke-width:1.4}
+      .bx{font-size:13px;font-weight:600;fill:#0E1A1F}
+      .bxs{font-size:10.5px;fill:#6B7C84}
+      .arrow{stroke:#2A5C6B;stroke-width:2;fill:none}
+      .note{font-size:11px;fill:#6B7C84}
+      .dt{font-size:13px;font-weight:700;fill:#2A5C6B}
+    </style>
+  </defs>
+
+  <rect width="1240" height="830" fill="#F5F7F8"/>
+
+  <text x="40" y="46" class="t">CampusCare — application architecture</text>
+  <text x="40" y="68" class="sub">Three layers, one direction. Each layer only calls the one below it; nothing ever calls upwards.</text>
+
+  <!-- PRESENTATION -->
+  <text x="40" y="106" class="band">PRESENTATION</text>
+  <text x="40" y="122" class="sub">Flutter widgets only</text>
+
+  <g>
+    <rect class="box" x="200" y="92" width="180" height="56" rx="10"/>
+    <text x="216" y="115" class="bx">Auth gate</text>
+    <text x="216" y="132" class="bxs">login / register</text>
+
+    <rect class="box" x="392" y="92" width="180" height="56" rx="10"/>
+    <text x="408" y="115" class="bx">Home</text>
+    <text x="408" y="132" class="bxs">stats + recent</text>
+
+    <rect class="box" x="584" y="92" width="180" height="56" rx="10"/>
+    <text x="600" y="115" class="bx">Report form</text>
+    <text x="600" y="132" class="bxs">validation + photo</text>
+
+    <rect class="box" x="776" y="92" width="180" height="56" rx="10"/>
+    <text x="792" y="115" class="bx">Details</text>
+    <text x="792" y="132" class="bxs">timeline + staff card</text>
+
+    <rect class="box" x="968" y="92" width="180" height="56" rx="10"/>
+    <text x="984" y="115" class="bx">Staff queue</text>
+    <text x="984" y="132" class="bxs">status updates</text>
+  </g>
+
+  <!-- STATE -->
+  <text x="40" y="246" class="band">STATE</text>
+  <text x="40" y="262" class="sub">Cubit (flutter_bloc)</text>
+
+  <g>
+    <rect x="200" y="232" width="232" height="60" rx="10" fill="#E4EEF1" stroke="#2A5C6B" stroke-width="1.6"/>
+    <text x="216" y="255" class="bx">AuthCubit</text>
+    <text x="216" y="272" class="bxs">signed-in user + role</text>
+
+    <rect x="452" y="232" width="232" height="60" rx="10" fill="#E4EEF1" stroke="#2A5C6B" stroke-width="1.6"/>
+    <text x="468" y="255" class="bx">ReportCubit</text>
+    <text x="468" y="272" class="bxs">stream, filters, submit</text>
+
+    <rect x="704" y="232" width="232" height="60" rx="10" fill="#E4EEF1" stroke="#2A5C6B" stroke-width="1.6"/>
+    <text x="720" y="255" class="bx">StaffCubit</text>
+    <text x="720" y="272" class="bxs">status transition + guard</text>
+
+    <rect x="968" y="232" width="180" height="60" rx="10" fill="#FBF0EC" stroke="#C75B39" stroke-width="1.6"/>
+    <text x="984" y="255" class="bx">StatusMachine</text>
+    <text x="984" y="272" class="bxs">pure transitions</text>
+  </g>
+
+  <!-- SERVICES -->
+  <text x="40" y="392" class="band">SERVICES</text>
+  <text x="40" y="408" class="sub">the only Firebase-aware code</text>
+
+  <g>
+    <rect class="box" x="200" y="372" width="232" height="66" rx="10"/>
+    <text x="216" y="395" class="bx">AuthService</text>
+    <text x="216" y="412" class="bxs">sign in / register</text>
+    <text x="216" y="427" class="bxs">loads role from users/</text>
+
+    <rect class="box" x="452" y="372" width="232" height="66" rx="10"/>
+    <text x="468" y="395" class="bx">ReportService</text>
+    <text x="468" y="412" class="bxs">watch, create</text>
+    <text x="468" y="427" class="bxs">update status</text>
+
+    <rect class="box" x="704" y="372" width="232" height="66" rx="10"/>
+    <text x="720" y="395" class="bx">StorageService</text>
+    <text x="720" y="412" class="bxs">pick, compress</text>
+    <text x="720" y="427" class="bxs">upload to image host</text>
+  </g>
+
+  <!-- EXTERNAL -->
+  <text x="40" y="532" class="band">EXTERNAL</text>
+  <text x="40" y="548" class="sub">managed services</text>
+
+  <g>
+    <rect x="200" y="512" width="232" height="76" rx="10" fill="#12252B"/>
+    <text x="216" y="538" font-size="13" font-weight="700" fill="#E7EFF2">Firebase Authentication</text>
+    <text x="216" y="556" font-size="10.5" fill="#9FB6BE">email + password, uid</text>
+
+    <rect x="452" y="512" width="232" height="76" rx="10" fill="#12252B"/>
+    <text x="468" y="538" font-size="13" font-weight="700" fill="#E7EFF2">Cloud Firestore</text>
+    <text x="468" y="556" font-size="10.5" fill="#9FB6BE">users / reports</text>
+
+    <rect x="704" y="512" width="232" height="76" rx="10" fill="#12252B"/>
+    <text x="720" y="538" font-size="13" font-weight="700" fill="#E7EFF2">Cloudinary</text>
+    <text x="720" y="556" font-size="10.5" fill="#9FB6BE">unsigned preset uploads</text>
+  </g>
+
+  <!-- SERVER-SIDE ENFORCEMENT: below the external row, not beside it -->
+  <g>
+    <rect x="452" y="620" width="696" height="66" rx="10" fill="#FBF0EC" stroke="#C75B39" stroke-width="1.8"/>
+    <text x="472" y="646" font-size="12.5" font-weight="700" fill="#8A3B22">Firestore security rules</text>
+    <text x="472" y="664" font-size="10.5" fill="#8A3B22">evaluated server-side on every request, after the client is out of the picture — the app cannot bypass them</text>
+  </g>
+
+  <line x1="568" y1="592" x2="568" y2="614" stroke="#C75B39" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#a)"/>
+
+  <!-- ARROWS -->
+  <line class="arrow" x1="290" y1="150" x2="290" y2="226" marker-end="url(#d)"/>
+  <line class="arrow" x1="568" y1="150" x2="568" y2="226" marker-end="url(#d)"/>
+  <line class="arrow" x1="820" y1="150" x2="820" y2="226" marker-end="url(#d)"/>
+
+  <line class="arrow" x1="316" y1="294" x2="316" y2="366" marker-end="url(#d)"/>
+  <line class="arrow" x1="568" y1="294" x2="568" y2="366" marker-end="url(#d)"/>
+  <line class="arrow" x1="820" y1="294" x2="820" y2="366" marker-end="url(#d)"/>
+
+  <line class="arrow" x1="316" y1="440" x2="316" y2="506" marker-end="url(#d)"/>
+  <line class="arrow" x1="568" y1="440" x2="568" y2="506" marker-end="url(#d)"/>
+  <line class="arrow" x1="820" y1="440" x2="820" y2="506" marker-end="url(#d)"/>
+
+  <!-- legend -->
+  <g>
+    <text x="40" y="722" class="dt">Reading the diagram</text>
+    <text x="40" y="744" class="note">1. A screen emits an event to its Cubit. It never touches a service or Firebase directly.</text>
+    <text x="40" y="764" class="note">2. The Cubit applies the domain rule, then calls exactly one service.</text>
+    <text x="40" y="784" class="note">3. Only the services know that Firebase or Cloudinary exist — swapping the image host touched one class.</text>
+    <text x="40" y="804" class="note">4. The security rules are not a layer in the app. They run inside Google's infrastructure, after the client is gone.</text>
+  </g>
+</svg>
